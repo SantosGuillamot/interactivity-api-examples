@@ -4,9 +4,10 @@ $unique_id = substr(uniqid(), -5);
 wp_initial_state(
 	'interactivityAPIExamples',
 	array(
-		'selected'  => null,
-		'openText'  => __( 'Open menu' ),
-		'closeText' => __( 'Close menu' ),
+		'selected'    => null,
+		'openText'    => __( 'Open menu' ),
+		'closeText'   => __( 'Close menu' ),
+		'isActive'    => false,
 	)
 );
 ?>
@@ -14,7 +15,7 @@ wp_initial_state(
 <div
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
-	data-wp-context='{ "id": "<?php echo $unique_id; ?>" }'
+	data-wp-context='{ "id": "<?php echo $unique_id; ?>" , "answer": null }'
 	data-wp-on--keydown="actions.closeOnEsc"
 >
 	<div>
@@ -38,10 +39,19 @@ wp_initial_state(
 		id="quiz-<?php echo $unique_id; ?>"
 	>
 		<?php if ( $attributes['typeOfQuiz'] == 'boolean' ): ?>
-			<button data-wp-watch="callbacks.focusOnOpen">
+			<button
+				data-wp-context='{ "thisAnswer": true }'
+				data-wp-watch="callbacks.focusOnOpen"
+				data-wp-on--click="actions.answer"
+				data-wp-class--active="state.isActive"
+			>
 				<?php echo __( 'Yes' ); ?>
 			</button>
-			<button>
+			<button
+				data-wp-context='{ "thisAnswer": false }'
+				data-wp-on--click="actions.answer"
+				data-wp-class--active="state.isActive"
+			>
 				<?php echo __( 'No' ); ?>
 			</button>
 
