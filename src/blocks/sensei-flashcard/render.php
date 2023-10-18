@@ -28,8 +28,8 @@ $flashcard_content = $processor->get_updated_html();
     data-wp-on--click="actions.flip" 
     aria-controls="flashcard-<?php echo $unique_id; ?>"
   >
-  <div class="flashcard-inner" data-wp-style--transform="state.flipTransition">
-    <?php echo $flashcard_content; ?>
+    <div class="flashcard-inner" data-wp-style--transform="state.flipTransition">
+      <?php echo $flashcard_content; ?>
+    </div>
   </div>
-</div>
 </div>
