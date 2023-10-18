@@ -11,7 +11,8 @@ const { state } = store('interactivityAPIExamples', {
 		},
 		get isActive() {
 			const context = getContext();
-			return context.answer === context.thisAnswer;
+			const id = context.id;
+			return state.quizzes[id].current === context.thisAnswer;
 		},
 	},
 	actions: {
@@ -32,10 +33,10 @@ const { state } = store('interactivityAPIExamples', {
 		},
 		answer: () => {
 			const context = getContext();
-			context.answer =
-				context.answer === context.thisAnswer
-					? null
-					: context.thisAnswer;
+			const id = context.id;
+			const quiz = state.quizzes[id];
+			quiz.current =
+				quiz.current !== context.thisAnswer ? context.thisAnswer : null;
 		},
 	},
 	callbacks: {
