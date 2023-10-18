@@ -2,13 +2,12 @@ import { store, getContext } from '@wordpress/interactivity';
 
 const { state } = store('interactivityAPIExamples', {
 	state: {
-		selected: null,
 		get isOpen() {
 			const context = getContext();
 			return state.selected === context.id;
 		},
 		get toggleText() {
-			return state.isOpen ? 'Close' : 'Open';
+			return state.isOpen ? state.closeText : state.openText;
 		},
 	},
 	actions: {

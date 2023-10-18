@@ -1,5 +1,14 @@
 <?php
 $unique_id = substr(uniqid(), -5);
+
+wp_initial_state(
+	'interactivityAPIExamples',
+	array(
+		'selected'  => null,
+		'openText'  => __( 'Open menu' ),
+		'closeText' => __( 'Close menu' ),
+	)
+);
 ?>
 
 <div
