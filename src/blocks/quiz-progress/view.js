@@ -17,6 +17,9 @@ const { state } = store('interactivityAPIExamples', {
 				  ).length
 				: '?';
 		},
+		get allCorrect() {
+			return state.correct === Object.keys(state.quizzes).length;
+		},
 	},
 	actions: {
 		checkAnswers: () => {

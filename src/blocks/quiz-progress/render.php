@@ -5,7 +5,8 @@
 			'answered'    => 0,
 			'allAnswered' => false,
 			'showAnswers' => false,
-			'correct'     => "?"
+			'correct'     => "?",
+			'allCorrect'  => false,
 		)
 	);
 ?>
@@ -22,6 +23,9 @@
 	<div>
 		<strong><?php echo __( 'Correct' ); ?></strong>: 
 		<span data-wp-text="state.correct"></span>
+		<span data-wp-bind--hidden="!state.allCorrect">
+			<?php echo __( 'All correct, congratulations! 🎉' ); ?>
+		</span>
 	</div>
 	
 	<div>
