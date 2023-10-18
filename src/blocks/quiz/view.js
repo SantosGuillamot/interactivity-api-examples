@@ -19,6 +19,13 @@ const { state } = store('interactivityAPIExamples', {
 				state.selected = context.id;
 			}
 		},
+		closeOnEsc: (event) => {
+			const { ref } = getElement();
+			if (event.key === 'Escape') {
+				state.selected = null;
+				ref.querySelector('button[aria-controls^="quiz-"]').focus();
+			}
+		},
 	},
 	callbacks: {
 		focusOnOpen: () => {

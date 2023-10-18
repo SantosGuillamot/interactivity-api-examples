@@ -15,6 +15,7 @@ wp_initial_state(
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
 	data-wp-context='{ "id": "<?php echo $unique_id; ?>" }'
+	data-wp-on--keydown="actions.closeOnEsc"
 >
 	<div>
 		<strong>
