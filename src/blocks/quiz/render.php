@@ -1,13 +1,21 @@
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div
+	<?php echo get_block_wrapper_attributes(); ?>
+	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
+	data-wp-context='{ "isOpen": false }'
+>
 	<div>
 		<strong>
 			<?php echo __( 'Question' ) . ": "; ?>
 		</strong>
 
 		<?php echo $attributes[ 'question' ]; ?>
+
+		<button data-wp-on--click="actions.toggle">
+			<?php echo __( 'Open' ); ?>
+		</button>
 	</div>
 
-	<div>
+	<div data-wp-bind--hidden="!context.isOpen">
 		<?php if ( $attributes['typeOfQuiz'] == 'boolean' ): ?>
 			<button>
 				<?php echo __( 'Yes' ); ?>
