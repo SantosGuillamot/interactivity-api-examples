@@ -1,0 +1,43 @@
+/* Container for chat window */
+#chat-container {
+	width: 400px;
+	height: 100%;
+	border: 1px solid black;
+	margin: 0 auto;
+	padding: 10px;
+	overflow: auto;
+}
+
+/* Style for user and assistant messages */
+.user-message,
+.assistant-message {
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.user-message {
+	background-color: #f1f1f1;
+	text-align: right;
+}
+
+.assistant-message {
+	background-color: #e1e1e1;
+	text-align: left;
+}
+
+/* Text input area */
+#message-input {
+	width: 100%;
+	padding: 10px;
+}
+
+/* Send button */
+.send-button {
+	width: 100%;
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
