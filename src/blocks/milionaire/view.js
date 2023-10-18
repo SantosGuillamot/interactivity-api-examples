@@ -39,21 +39,6 @@ const { state, actions } = store('interactivityAPIExamples', {
 		prompt: '',
 		messages: initialMessages,
 	},
-	effects: {
-		newMessage: () => {
-			const { ref } = getElement();
-			const lastMessage = state.messages[state.messages.length - 1];
-
-			const userMessage = document.createElement('p');
-			userMessage.classList.add(
-				lastMessage.role === 'assistant'
-					? 'assistant-message'
-					: 'user-message'
-			);
-			userMessage.textContent = lastMessage.content;
-			ref.appendChild(userMessage);
-		},
-	},
 	actions: {
 		getCompletion: async () => {
 			return fetch('https://api.openai.com/v1/chat/completions', {
@@ -76,6 +61,19 @@ const { state, actions } = store('interactivityAPIExamples', {
 		},
 		updateMessages: (message) => {
 			state.messages = [...state.messages, message];
+			const ref = document.querySelector('.chat-container');
+
+			const userMessage = document.createElement('p');
+			userMessage.classList.add(
+				message.role === 'assistant'
+					? 'assistant-message'
+					: 'user-message'
+			);
+			userMessage.innerHTML = message.content;
+			ref.appendChild(userMessage);
+
+			// scroll to the bottom	of the chat
+			ref.scrollTop = ref.scrollHeight;
 		},
 		send: function* () {
 			// Update the messages with the prompt
@@ -92,8 +90,6 @@ const { state, actions } = store('interactivityAPIExamples', {
 
 			// Update the messages with the response
 			actions.updateMessages({ role: 'assistant', content });
-
-			console.log('done');
 		},
 	},
 });

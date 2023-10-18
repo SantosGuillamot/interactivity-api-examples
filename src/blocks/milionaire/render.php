@@ -15,7 +15,7 @@ wp_initial_state(
 	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
 >
 	<!-- Chat window -->
-	<div id="chat-container" data-wp-effect="effects.newMessage">
+	<div class="chat-container" data-wp-effect="effects.newMessage">
 		<div class="assistant-message">
 			
 			<p><b>For $100: What is WordPress primarily used for?</b></p>
@@ -30,19 +30,22 @@ wp_initial_state(
 
 			<p> What's your final answer? </p>
 		</div>
+
+		<!-- TODO: Add a loading indicator here -->
 	</div>
 
+	<div class="send-area">
 
-    <!-- Text input field -->
-	<input 
-		type="text" 
-		id="message-input" 
-		placeholder="Type your message..." 
-		data-wp-on--input="actions.updatePrompt" 
-		data-wp-bind--value="state.prompt"
-	>
+		<!-- Send button -->
+		<button class="send-button" data-wp-on--click="actions.send">Send</button>
 
-	<!-- Send button -->
-	<button class="send-button" data-wp-on--click="actions.send">Send</button>
-
+		<!-- Text input field -->
+		<input 
+			type="text" 
+			class="text-input" 
+			placeholder="Type your message..." 
+			data-wp-on--input="actions.updatePrompt" 
+			data-wp-bind--value="state.prompt"
+		>
+	</div>
 </div>
