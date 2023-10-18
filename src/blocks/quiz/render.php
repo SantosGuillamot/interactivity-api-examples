@@ -37,7 +37,7 @@ wp_initial_state(
 		id="quiz-<?php echo $unique_id; ?>"
 	>
 		<?php if ( $attributes['typeOfQuiz'] == 'boolean' ): ?>
-			<button>
+			<button data-wp-watch="callbacks.focusOnOpen">
 				<?php echo __( 'Yes' ); ?>
 			</button>
 			<button>
@@ -45,7 +45,10 @@ wp_initial_state(
 			</button>
 
 		<?php elseif ( $attributes['typeOfQuiz'] === 'input'): ?>
-			<input type="text">
+			<input
+				type="text"
+				data-wp-watch="callbacks.focusOnOpen"	
+			>
 
 		<?php endif; ?>
 	</div>

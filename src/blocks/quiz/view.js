@@ -1,4 +1,4 @@
-import { store, getContext } from '@wordpress/interactivity';
+import { store, getContext, getElement } from '@wordpress/interactivity';
 
 const { state } = store('interactivityAPIExamples', {
 	state: {
@@ -18,6 +18,12 @@ const { state } = store('interactivityAPIExamples', {
 			} else {
 				state.selected = context.id;
 			}
+		},
+	},
+	callbacks: {
+		focusOnOpen: () => {
+			const { ref } = getElement();
+			state.isOpen && ref.focus();
 		},
 	},
 });
