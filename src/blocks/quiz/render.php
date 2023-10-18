@@ -48,14 +48,14 @@ wp_initial_state(
 			<button
 				data-wp-context='{ "thisAnswer": true }'
 				data-wp-watch="callbacks.focusOnOpen"
-				data-wp-on--click="actions.answer"
+				data-wp-on--click="actions.answerBoolean"
 				data-wp-class--active="state.isActive"
 			>
 				<?php echo __( 'Yes' ); ?>
 			</button>
 			<button
 				data-wp-context='{ "thisAnswer": false }'
-				data-wp-on--click="actions.answer"
+				data-wp-on--click="actions.answerBoolean"
 				data-wp-class--active="state.isActive"
 			>
 				<?php echo __( 'No' ); ?>
@@ -64,7 +64,8 @@ wp_initial_state(
 		<?php elseif ( $attributes['typeOfQuiz'] === 'input'): ?>
 			<input
 				type="text"
-				data-wp-watch="callbacks.focusOnOpen"	
+				data-wp-watch="callbacks.focusOnOpen"
+				data-wp-on--input="actions.answerInput"
 			>
 
 		<?php endif; ?>

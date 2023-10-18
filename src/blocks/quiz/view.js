@@ -31,12 +31,17 @@ const { state } = store('interactivityAPIExamples', {
 				ref.querySelector('button[aria-controls^="quiz-"]').focus();
 			}
 		},
-		answer: () => {
+		answerBoolean: () => {
 			const context = getContext();
 			const id = context.id;
 			const quiz = state.quizzes[id];
 			quiz.current =
 				quiz.current !== context.thisAnswer ? context.thisAnswer : null;
+		},
+		answerInput: (event) => {
+			const context = getContext();
+			const id = context.id;
+			state.quizzes[id].current = event.target.value || null;
 		},
 	},
 	callbacks: {
