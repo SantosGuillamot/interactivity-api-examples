@@ -8,6 +8,12 @@ wp_initial_state(
 		'openText'    => __( 'Open menu' ),
 		'closeText'   => __( 'Close menu' ),
 		'isActive'    => false,
+		'quizzes' => array(
+			$unique_id => array( 
+				'current' => null, 
+				'correct' => $attributes['answer']
+			)
+		)
 	)
 );
 ?>
