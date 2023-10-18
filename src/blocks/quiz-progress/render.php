@@ -26,10 +26,17 @@
 	
 	<div>
 		<button
+			data-wp-bind--hidden="state.showAnswers"
 			data-wp-bind--disabled="!state.allAnswered"
 			data-wp-on--click="actions.checkAnswers"
 		>
 			<?php echo __( 'Check your answers' ); ?>
+		</button>
+		<button
+			data-wp-bind--hidden="!state.showAnswers"
+			data-wp-on--click="actions.reset"
+		>
+			<?php echo __( 'Reset' ); ?>
 		</button>
 	</div>
 

@@ -23,5 +23,11 @@ const { state } = store('interactivityAPIExamples', {
 			state.showAnswers = true;
 			state.selected = null;
 		},
+		reset: () => {
+			state.showAnswers = false;
+			Object.values(state.quizzes).forEach((quiz) => {
+				quiz.current = null;
+			});
+		},
 	},
 });

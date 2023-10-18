@@ -8,12 +8,13 @@ wp_initial_state(
 		'openText'    => __( 'Open menu' ),
 		'closeText'   => __( 'Close menu' ),
 		'isActive'    => false,
-		'quizzes' => array(
+		'quizzes'     => array(
 			$unique_id => array( 
 				'current' => null, 
 				'correct' => $attributes['answer']
 			)
-		)
+			),
+		'inputAnswer' => null
 	)
 );
 ?>
@@ -66,6 +67,7 @@ wp_initial_state(
 				type="text"
 				data-wp-watch="callbacks.focusOnOpen"
 				data-wp-on--input="actions.answerInput"
+				data-wp-bind--value="state.inputAnswer"
 			>
 
 		<?php endif; ?>

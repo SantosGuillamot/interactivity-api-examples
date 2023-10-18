@@ -14,6 +14,11 @@ const { state } = store('interactivityAPIExamples', {
 			const id = context.id;
 			return state.quizzes[id].current === context.thisAnswer;
 		},
+		get inputAnswer() {
+			const context = getContext();
+			const id = context.id;
+			return state.quizzes[id].current || '';
+		},
 	},
 	actions: {
 		toggle: () => {
