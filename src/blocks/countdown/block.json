@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "interactivity-api-examples/countdown",
+	"version": "1.0.0",
+	"title": "Countdown",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Countdown",
+	"supports": {
+		"interactivity": true
+	},
+	"attributes": {
+		"date": {
+			"type": "string"
+		}
+	},
+	"textdomain": "interactivity-api-examples",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
