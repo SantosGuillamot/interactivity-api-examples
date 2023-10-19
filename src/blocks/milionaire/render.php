@@ -14,21 +14,18 @@ wp_initial_state(
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
 >
+	<button data-wp-on--click="actions.startGame">Start Game!</button>
 	<!-- Chat window -->
-	<div class="chat-container" data-wp-effect="effects.newMessage">
-		<div class="assistant-message">
-			
-			<p><b>For $100: What is WordPress primarily used for?</b></p>
-
-			<p>
-			<p>A) Cooking recipes</p>
-			<p>B) Blogging and website creation</p>
-			<p>C) Video games</p>
-			<p>D) Car manufacturing</p>
-
-			</p>
-
-			<p> What's your final answer? </p>
+	<div class="chat-container">
+		<div
+			data-wp-each--messages="state.frontendMessages"
+			data-wp-each-key="id"
+		>
+			<div
+				data-wp-class--assistant-message="state.isAssistantMessage"
+				data-wp-class--user-message="state.isUserMessage"
+				data-wp-bind--children="context.messages.content"
+			>
 		</div>
 
 		<!-- TODO: Add a loading indicator here -->

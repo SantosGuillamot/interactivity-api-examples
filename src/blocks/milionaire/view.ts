@@ -1,43 +1,22 @@
-import { store } from '@wordpress/interactivity';
+import { store, getContext } from '@wordpress/interactivity';
 import snarkdown from 'snarkdown';
-
-const initialMessages = [
-	{
-		role: 'system',
-		content: `You are WordPressBOT, a host of Who Wants to Be a (Wordpress) Millionaire? game show.
-Your job is to ask me (the participant) progressively more difficult questions about Wordpress. 
-Start with basic and simple ones. For each question, state the amount I am playing for and give me 4 possible answers to choose from.
-You can allow me to "phone a friend", "ask the audience" or do a 50/50, just like in the real game show.
-When I get to 1 million dollars, I win the game. If I get a question wrong, I lose the game. 
-When I say "I am ready to play!", start the game.`,
-	},
-	{
-		role: 'user',
-		content: 'I am ready to play!',
-	},
-	{
-		role: 'assistant',
-		content: `Welcome to Who Wants to be a (WordPress) milionaire?
-You have three lifelines available: "Phone a Friend," "Ask the Audience," and "50/50."
-
-**For $100: What is WordPress primarily used for?**
-
-A) Cooking recipes
-B) Blogging and website creation
-C) Video games
-D) Car manufacturing
-
-What's your final answer?`,
-	},
-];
 
 const { state, actions } = store('interactivityAPIExamples', {
 	state: {
 		get apiKey() {
 			return localStorage.getItem('OpenAI-APIkey');
 		},
+		get isUserMessage() {
+			const context = getContext();
+			return context.messages.role === 'user';
+		},
+		get isAssistantMessage() {
+			const context = getContext();
+			return context.messages.role === 'assistant';
+		},
 		prompt: '',
-		messages: initialMessages,
+		botMessages: [],
+		frontendMessages: [],
 	},
 	actions: {
 		getCompletion: async () => {
@@ -49,7 +28,7 @@ const { state, actions } = store('interactivityAPIExamples', {
 				},
 				body: JSON.stringify({
 					model: 'gpt-4',
-					messages: state.messages,
+					messages: state.botMessages,
 				}),
 			})
 				.then((response) => response.json())
@@ -59,29 +38,7 @@ const { state, actions } = store('interactivityAPIExamples', {
 		updatePrompt: (event) => {
 			state.prompt = event.target.value;
 		},
-		updateMessages: (message) => {
-			state.messages = [...state.messages, message];
-			const ref = document.querySelector('.chat-container');
-
-			const userMessage = document.createElement('p');
-			userMessage.classList.add(
-				message.role === 'assistant'
-					? 'assistant-message'
-					: 'user-message'
-			);
-			userMessage.innerHTML = message.content;
-			ref.appendChild(userMessage);
-
-			// scroll to the bottom	of the chat
-			ref.scrollTop = ref.scrollHeight;
-		},
-		send: function* () {
-			// Update the messages with the prompt
-			actions.updateMessages({ role: 'user', content: state.prompt });
-
-			// Clear the prompt
-			state.prompt = '';
-
+		getResponse: function* () {
 			// Call the API
 			const completion = yield actions.getCompletion();
 
@@ -89,7 +46,59 @@ const { state, actions } = store('interactivityAPIExamples', {
 			const content = snarkdown(completion);
 
 			// Update the messages with the response
-			actions.updateMessages({ role: 'assistant', content });
+			state.botMessages.push({
+				role: 'assistant',
+				content,
+			});
+			state.frontendMessages.push({
+				role: 'assistant',
+				content,
+				id: state.frontendMessages.length + 1,
+			});
+		},
+		startGame: function* () {
+			const botStartupMessages = [
+				{
+					role: 'system',
+					content: `You are WordPressBOT, a host of Who Wants to Be a (Wordpress) Millionaire? game show.
+			Your job is to ask me (the participant) progressively more difficult questions about Wordpress. 
+			Start with basic and simple ones. For each question, state the amount I am playing for and give me 4 possible answers to choose from.
+			You can allow me to "phone a friend", "ask the audience" or do a 50/50, just like in the real game show.
+			When I get to 1 million dollars, I win the game. If I get a question wrong, I lose the game. 
+			When I say "I am ready to play!", start the game by asking questions related to WordPress. From time to time, remember me that I can ask for help like in the real game show.`,
+				},
+				{
+					role: 'user',
+					content: 'I am ready to play!',
+				},
+			];
+			state.botMessages.push(...botStartupMessages);
+
+			yield actions.getResponse();
+		},
+		send: function* () {
+			// Update the messages with the prompt
+			state.botMessages.push({
+				role: 'user',
+				content: state.prompt,
+			});
+			state.frontendMessages.push({
+				role: 'user',
+				content: state.prompt,
+				id: state.frontendMessages.length + 1,
+			});
+
+			// Clear the prompt
+			state.prompt = '';
+
+			yield actions.getResponse();
+		},
+	},
+	callbacks: {
+		test: () => {
+			setInterval(() => {
+				console.log(state.frontendMessages);
+			}, 3000);
 		},
 	},
 });
