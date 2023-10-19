@@ -1,4 +1,4 @@
-import { store, getElement } from '@wordpress/interactivity';
+import { store } from '@wordpress/interactivity';
 import snarkdown from 'snarkdown';
 
 const initialMessages = [
