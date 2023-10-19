@@ -1,0 +1,20 @@
+{
+	"extends": "../gutenberg/tsconfig.base.json",
+	"compilerOptions": {
+		"rootDir": "src",
+		"declarationDir": "build-types",
+		"checkJs": true,
+		"strict": false,
+		"paths": {
+			"@wordpress/interactivity": [
+				"../gutenberg/packages/interactivity/build-types"
+			]
+		}
+	},
+	"include": ["src/**/*"],
+	"references": [
+		{
+			"path": "../gutenberg/packages/interactivity"
+		}
+	]
+}
