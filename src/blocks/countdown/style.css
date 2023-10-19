@@ -1,0 +1,10 @@
+.wp-block-interactivity-api-examples-countdown {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.wp-block-interactivity-api-examples-countdown {
+	font-weight: bold;
+	font-size: 36px;
+}
