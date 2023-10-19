@@ -1,5 +1,15 @@
-import { store, getContext } from '@wordpress/interactivity';
-import snarkdown from 'snarkdown';
+import { store, getContext, createElement } from '@wordpress/interactivity';
+
+// This is the Markdown parser
+// It's imported asynchronously, so it's not available immediately, but
+let parseMarkdown: any;
+
+function htmlToPreact(content: string) {
+	// Create a Preact element from the Markdown content
+	return createElement('div', {
+		dangerouslySetInnerHTML: { __html: content },
+	});
+}
 
 const { state, actions } = store('interactivityAPIExamples', {
 	state: {
@@ -15,8 +25,17 @@ const { state, actions } = store('interactivityAPIExamples', {
 			return context.messages.role === 'assistant';
 		},
 		prompt: '',
-		botMessages: [],
-		frontendMessages: [],
+		isLoading: false,
+		messages: [],
+		get frontendMessages() {
+			return state.messages
+				.slice(2)
+				.map(({ role, content }) =>
+					role === 'assistant'
+						? { role, content: htmlToPreact(content) }
+						: { role, content }
+				);
+		},
 	},
 	actions: {
 		getCompletion: async () => {
@@ -27,8 +46,8 @@ const { state, actions } = store('interactivityAPIExamples', {
 					Authorization: `Bearer ${state.apiKey}`,
 				},
 				body: JSON.stringify({
-					model: 'gpt-4',
-					messages: state.botMessages,
+					model: 'gpt-3.5-turbo',
+					messages: state.messages,
 				}),
 			})
 				.then((response) => response.json())
@@ -39,25 +58,27 @@ const { state, actions } = store('interactivityAPIExamples', {
 			state.prompt = event.target.value;
 		},
 		getResponse: function* () {
+			state.isLoading = true;
+			// Import the Markdown parser if it hasn't been imported yet
+			parseMarkdown = yield import('snarkdown').then(
+				(module) => module.default
+			);
+
 			// Call the API
 			const completion = yield actions.getCompletion();
 
 			// The response is in Markdown, so convert it to HTML
-			const content = snarkdown(completion);
+			const content = parseMarkdown(completion);
 
 			// Update the messages with the response
-			state.botMessages.push({
+			state.messages.push({
 				role: 'assistant',
 				content,
 			});
-			state.frontendMessages.push({
-				role: 'assistant',
-				content,
-				id: state.frontendMessages.length + 1,
-			});
+			state.isLoading = false;
 		},
 		startGame: function* () {
-			const botStartupMessages = [
+			const initialMessages = [
 				{
 					role: 'system',
 					content: `You are WordPressBOT, a host of Who Wants to Be a (Wordpress) Millionaire? game show.
@@ -72,20 +93,20 @@ const { state, actions } = store('interactivityAPIExamples', {
 					content: 'I am ready to play!',
 				},
 			];
-			state.botMessages.push(...botStartupMessages);
+			state.messages.push(...initialMessages);
 
 			yield actions.getResponse();
 		},
 		send: function* () {
+			// Don't send an empty prompt!
+			if (!state.prompt) {
+				return;
+			}
+
 			// Update the messages with the prompt
-			state.botMessages.push({
+			state.messages.push({
 				role: 'user',
 				content: state.prompt,
-			});
-			state.frontendMessages.push({
-				role: 'user',
-				content: state.prompt,
-				id: state.frontendMessages.length + 1,
 			});
 
 			// Clear the prompt
@@ -97,7 +118,7 @@ const { state, actions } = store('interactivityAPIExamples', {
 	callbacks: {
 		test: () => {
 			setInterval(() => {
-				console.log(state.frontendMessages);
+				console.log(state.messages);
 			}, 3000);
 		},
 	},

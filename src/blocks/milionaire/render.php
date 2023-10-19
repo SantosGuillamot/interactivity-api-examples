@@ -5,6 +5,7 @@ wp_initial_state(
 	array(
 		'prompt'    => '',
 		'messages'    => array(),
+		'isLoading' => false,
 	)
 );
 ?>
@@ -25,10 +26,8 @@ wp_initial_state(
 				data-wp-class--assistant-message="state.isAssistantMessage"
 				data-wp-class--user-message="state.isUserMessage"
 				data-wp-bind--children="context.messages.content"
-			>
-		</div>
+			> </div>
 
-		<!-- TODO: Add a loading indicator here -->
 	</div>
 
 	<div class="send-area">

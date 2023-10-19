@@ -1,10 +1,11 @@
 .wp-block-interactivity-api-examples-millionaire {
 	position: relative;
+	width: 400px;
 }
 
 /* Container for chat window */
 .chat-container {
-	width: 400px;
+	width: 100%;
 	height: 500px;
 	border: 1px solid black;
 	margin: 0 auto;
@@ -46,7 +47,6 @@
 	bottom: 0;
 	left: 0;
 	padding: 10px;
-	width: 100%;
 	display: flex;
 	justify-content: left;
 }
@@ -55,8 +55,8 @@
 .send-button {
 	width: 60px;
 	padding: 10px;
-	margin-right: 7px;
-	background-color: #4caf50;
+	margin-right: 10px;
+	background-color: #e1e1e1;
 	color: white;
 	border: none;
 	cursor: pointer;
@@ -64,6 +64,6 @@
 
 /* Text input area */
 .text-input {
-	width: 60%;
+	width: 300px;
 	padding: 10px;
 }
