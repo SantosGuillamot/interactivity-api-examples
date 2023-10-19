@@ -27,7 +27,7 @@ wp_initial_state(
 				data-wp-class--user-message="state.isUserMessage"
 				data-wp-bind--children="context.messages.content"
 			> </div>
-
+		</div>
 	</div>
 
 	<div class="send-area">
