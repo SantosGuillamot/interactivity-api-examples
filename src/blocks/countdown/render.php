@@ -17,8 +17,8 @@
 	data-wp-context='<?php echo wp_json_encode( $context ); ?>'
 	data-wp-init="callbacks.startCountdown"
 >
-	<span data-wp-text="context.days"></span><span>D</span>
-	<span data-wp-text="context.hours"></span><span>H</span>
-	<span data-wp-text="context.minutes"></span><span>M</span>
-	<span data-wp-text="context.seconds"></span><span>S</span>
+	<span><span data-wp-text="context.days"></span>D</span>
+	<span><span data-wp-text="context.hours"></span>H</span>
+	<span><span data-wp-text="context.minutes"></span>M</span>
+	<span><span data-wp-text="context.seconds"></span>S</span>
 </div>
