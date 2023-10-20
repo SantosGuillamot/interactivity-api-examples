@@ -26,7 +26,7 @@ wp_initial_state(
 	</div>
 
 	<!-- Chat window -->
-	<div class="chat-container">
+	<div class="chat-container" data-wp-watch="callbacks.scrollToBottom">
 		<div
 			data-wp-each--messages="state.frontendMessages"
 			data-wp-each-key="id"

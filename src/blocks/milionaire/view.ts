@@ -1,4 +1,9 @@
-import { store, getContext, createElement } from '@wordpress/interactivity';
+import {
+	store,
+	getContext,
+	getElement,
+	createElement,
+} from '@wordpress/interactivity';
 
 // This is the Markdown parser
 // It's imported asynchronously, so it's not available immediately, but
@@ -121,6 +126,16 @@ const { state, actions } = store('interactivityAPIExamples', {
 			state.prompt = '';
 
 			yield actions.getResponse();
+		},
+	},
+	callbacks: {
+		scrollToBottom: () => {
+			const { ref } = getElement('messages');
+			state.frontendMessages &&
+				ref.scrollTo({
+					top: ref.scrollHeight,
+					behavior: 'smooth',
+				});
 		},
 	},
 });
