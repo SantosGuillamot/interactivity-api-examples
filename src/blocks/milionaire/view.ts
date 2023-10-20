@@ -28,13 +28,15 @@ const { state, actions } = store('interactivityAPIExamples', {
 		isLoading: false,
 		messages: [],
 		get frontendMessages() {
-			return state.messages
-				.slice(2)
-				.map(({ role, content }) =>
-					role === 'assistant'
-						? { role, content: htmlToPreact(content) }
-						: { role, content }
-				);
+			return state.messages.slice(2).map(({ role, content }, index) =>
+				role === 'assistant'
+					? {
+							role,
+							content: htmlToPreact(content),
+							id: index + 1,
+					  }
+					: { role, content, id: index + 1 }
+			);
 		},
 	},
 	actions: {
@@ -113,13 +115,6 @@ const { state, actions } = store('interactivityAPIExamples', {
 			state.prompt = '';
 
 			yield actions.getResponse();
-		},
-	},
-	callbacks: {
-		test: () => {
-			setInterval(() => {
-				console.log(state.messages);
-			}, 3000);
 		},
 	},
 });
