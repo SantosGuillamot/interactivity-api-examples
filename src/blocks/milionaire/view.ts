@@ -25,6 +25,9 @@ const { state, actions } = store('interactivityAPIExamples', {
 			return context.messages.role === 'assistant';
 		},
 		prompt: '',
+		get isEmptyPrompt() {
+			return state.prompt === '';
+		},
 		isLoading: false,
 		messages: [],
 		get frontendMessages() {
@@ -100,11 +103,6 @@ const { state, actions } = store('interactivityAPIExamples', {
 			yield actions.getResponse();
 		},
 		send: function* () {
-			// Don't send an empty prompt!
-			if (!state.prompt) {
-				return;
-			}
-
 			// Update the messages with the prompt
 			state.messages.push({
 				role: 'user',

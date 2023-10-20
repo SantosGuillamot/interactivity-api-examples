@@ -56,10 +56,13 @@
 	width: 60px;
 	padding: 10px;
 	margin-right: 10px;
-	background-color: #e1e1e1;
+	background-color: #00a67d;
 	color: white;
 	border: none;
 	cursor: pointer;
+	&:disabled {
+		background-color: #e1e1e1;
+	}
 }
 
 /* Text input area */

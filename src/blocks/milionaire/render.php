@@ -31,10 +31,6 @@ wp_initial_state(
 	</div>
 
 	<div class="send-area">
-
-		<!-- Send button -->
-		<button class="send-button" data-wp-on--click="actions.send">Send</button>
-
 		<!-- Text input field -->
 		<input 
 			type="text" 
@@ -43,5 +39,13 @@ wp_initial_state(
 			data-wp-on--input="actions.updatePrompt" 
 			data-wp-bind--value="state.prompt"
 		>
+		<!-- Send button -->
+		<button
+			class="send-button"
+			data-wp-bind--disabled="state.isEmptyPrompt"
+			data-wp-on--click="actions.send"
+		>
+			Send
+		</button>
 	</div>
 </div>
