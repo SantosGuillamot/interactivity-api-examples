@@ -4,7 +4,7 @@
 	position: relative;
 	width: 400px;
 
-	/* Container for start gamne */
+	// Container for start gamne
 	.start-container {
 		max-width: 100%;
 		margin: 20px auto;
@@ -19,14 +19,16 @@
 		}
 	}
 
-	/* Container for chat window */
+	// Container for chat window
 	.chat-container {
 		max-width: 100%;
 		height: 500px;
 		border: 1px solid black;
 		padding: 10px;
 		overflow-y: auto;
-		/* Style for user and assistant messages */
+		display: flex;
+		flex-flow: column;
+		// Style for user and assistant messages
 		.user-message,
 		.assistant-message {
 			padding: 10px;
@@ -51,20 +53,20 @@
 		}
 	}
 
-	/* Container for the send message area */
+	// Container for the send message area
 	.send-area {
 		max-width: 100%;
 		padding: 10px;
 		display: flex;
 		justify-content: left;
 
-		/* Text input area */
+		// Text input area
 		.text-input {
 			width: 300px;
 			padding: 10px;
 		}
 
-		/* Button to send message */
+		// Button to send message
 		.send-button {
 			width: 60px;
 			padding: 10px;
