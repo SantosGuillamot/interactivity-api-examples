@@ -23,30 +23,28 @@
 	.chat-container {
 		max-width: 100%;
 		height: 500px;
-		border: 1px solid black;
-		padding: 10px;
+		border: 1px solid rgba(0, 0, 0, 0.3);
 		overflow-y: auto;
 		display: flex;
 		flex-flow: column;
 		// Style for user and assistant messages
 		.user-message,
 		.assistant-message {
-			padding: 10px;
-			margin: 5px;
-			border-radius: 5px;
-			max-width: 80%;
 			display: inline-block;
+			padding: 20px;
+			width: calc(100% - 40px);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
 
 		.user-message {
-			background-color: #f1f1f1;
+			background-color: #fff;
 			text-align: right;
 			align-self: end;
 			border-bottom-right-radius: 0;
 		}
 
 		.assistant-message {
-			background-color: #e1e1e1;
+			background-color: rgba(247, 247, 248, 1);
 			text-align: left;
 			align-self: start;
 			border-bottom-left-radius: 0;
