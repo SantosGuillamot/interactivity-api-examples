@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "interactivity-api-examples/sensei-flashcard",
+	"version": "1.0.0",
+	"title": "Sensei Flashcard",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "A Flashcard block that flips to reveal an answer",
+	"supports": {
+		"interactivity": true
+	},
+	"textdomain": "interactivity-api-examples",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
