@@ -18,7 +18,11 @@ wp_initial_state(
 	<!-- Start area -->
 
 	<div class="start-container">
-		<button data-wp-on--click="actions.startGame">Start Game!</button>
+		<button
+			data-wp-on--click="actions.startGame"
+			data-wp-text="state.startGameText"
+		>
+		</button>
 	</div>
 
 	<!-- Chat window -->
@@ -53,4 +57,7 @@ wp_initial_state(
 			Send
 		</button>
 	</div>
+
+	<!-- I tried to use it after `wp-each` but it seems something is broken -->
+	<div class="load" data-wp-bind--hidden="!state.isLoading"></div>
 </div>

@@ -41,6 +41,11 @@ const { state, actions } = store('interactivityAPIExamples', {
 					: { role, content, id: index + 1 }
 			);
 		},
+		get startGameText() {
+			return state.frontendMessages.length === 0 && !state.isLoading
+				? 'Start Game!'
+				: 'Restart';
+		},
 	},
 	actions: {
 		getCompletion: async () => {
@@ -83,6 +88,9 @@ const { state, actions } = store('interactivityAPIExamples', {
 			state.isLoading = false;
 		},
 		startGame: function* () {
+			// Restart game.
+			state.messages = [];
+
 			const initialMessages = [
 				{
 					role: 'system',
