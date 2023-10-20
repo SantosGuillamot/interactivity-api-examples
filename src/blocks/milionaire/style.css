@@ -1,72 +1,81 @@
 .wp-block-interactivity-api-examples-millionaire {
+	display: flex;
+	flex-flow: column;
 	position: relative;
 	width: 400px;
 }
 
-/* Container for chat window */
-.chat-container {
-	width: 100%;
-	height: 500px;
-	border: 1px solid black;
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 65px;
-	overflow-y: auto;
-	position: relative;
-	display: flex;
-	flex-flow: column;
-}
-
-/* Style for user and assistant messages */
-.user-message,
-.assistant-message {
-	padding: 10px;
-	margin: 5px;
-	border-radius: 5px;
-	max-width: 80%;
-	display: inline-block;
-}
-
-.user-message {
-	background-color: #f1f1f1;
-	text-align: right;
-	align-self: end;
-	border-bottom-right-radius: 0;
-}
-
-.assistant-message {
-	background-color: #e1e1e1;
-	text-align: left;
-	align-self: start;
-	border-bottom-left-radius: 0;
-}
-
-/* Send message area */
-.send-area {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	padding: 10px;
-	display: flex;
-	justify-content: left;
-}
-
-/* Button to send message */
-.send-button {
-	width: 60px;
-	padding: 10px;
-	margin-right: 10px;
-	background-color: #00a67d;
-	color: white;
-	border: none;
-	cursor: pointer;
-	&:disabled {
-		background-color: #e1e1e1;
+/* Container for start gamne */
+.start-container {
+	max-width: 100%;
+	margin: 20px auto;
+	& button {
+		font-size: 20px;
+		cursor: pointer;
+		background: #00a67d;
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		padding: 12px;
 	}
 }
 
-/* Text input area */
-.text-input {
-	width: 300px;
+/* Container for chat window */
+.chat-container {
+	max-width: 100%;
+	height: 500px;
+	border: 1px solid black;
 	padding: 10px;
+	overflow-y: auto;
+}
+
+/* Container for the send message area */
+.send-area {
+	max-width: 100%;
+	padding: 10px;
+	display: flex;
+	justify-content: left;
+	/* Style for user and assistant messages */
+	.user-message,
+	.assistant-message {
+		padding: 10px;
+		margin: 5px;
+		border-radius: 5px;
+		max-width: 80%;
+		display: inline-block;
+	}
+
+	.user-message {
+		background-color: #f1f1f1;
+		text-align: right;
+		align-self: end;
+		border-bottom-right-radius: 0;
+	}
+
+	.assistant-message {
+		background-color: #e1e1e1;
+		text-align: left;
+		align-self: start;
+		border-bottom-left-radius: 0;
+	}
+
+	/* Text input area */
+	.text-input {
+		width: 300px;
+		padding: 10px;
+	}
+
+	/* Button to send message */
+	.send-button {
+		width: 60px;
+		padding: 10px;
+		margin-right: 10px;
+		background-color: #00a67d;
+		color: white;
+		border: none;
+		cursor: pointer;
+		&:disabled {
+			background-color: #e1e1e1;
+		}
+	}
 }

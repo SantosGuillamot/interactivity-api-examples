@@ -15,7 +15,12 @@ wp_initial_state(
 	<?php echo get_block_wrapper_attributes(); ?>
 	data-wp-interactive='{"namespace": "interactivityAPIExamples"}'
 >
-	<button data-wp-on--click="actions.startGame">Start Game!</button>
+	<!-- Start area -->
+
+	<div class="start-container">
+		<button data-wp-on--click="actions.startGame">Start Game!</button>
+	</div>
+
 	<!-- Chat window -->
 	<div class="chat-container">
 		<div
