@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "interactivity-api-examples/millionaire",
+	"version": "1.0.0",
+	"title": "Who Wants to Be a (WordPress) Millionaire?",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Who wants to be a (WordPress) millionaire?",
+	"supports": {
+		"interactivity": true
+	},
+	"textdomain": "interactivity-api-examples",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
