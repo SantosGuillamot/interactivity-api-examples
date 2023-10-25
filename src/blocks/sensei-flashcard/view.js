@@ -1,4 +1,4 @@
-import { store, getContext } from '@wordpress/interactivity';
+import { store } from '@wordpress/interactivity';
 
 const { state } = store('interactivityAPIExamples', {
 	state: {
@@ -8,7 +8,6 @@ const { state } = store('interactivityAPIExamples', {
 	},
 	actions: {
 		flip: () => {
-			console.log(state.isFrontside);
 			state.isFrontside = !state.isFrontside;
 		},
 	},
