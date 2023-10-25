@@ -6,7 +6,7 @@ import {
 } from '@wordpress/interactivity';
 
 // This is the Markdown parser
-// It's imported asynchronously, so it's not available immediately, but
+// It's imported asynchronously, so it's not available immediately
 let parseMarkdown: any;
 
 function htmlToPreact(content: string) {
